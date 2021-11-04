@@ -120,6 +120,13 @@ module.exports = {
             "src/MergeSideNavigation/MergeSideNavigation.js",
             "src/MergeMainContent/MergeMainContent.js",
           ]
+        },
+        {
+          name: "Tools",
+          include: [
+            "src/ThemeSwitcher/ThemeSwitcher.js",
+            "src/DeviceViewer/DeviceViewer.js",
+          ]
         }
       ],
       wrapper: './src/Wrapper/UXPinWrapper.js',
