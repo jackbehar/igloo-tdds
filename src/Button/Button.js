@@ -1,102 +1,72 @@
-import ButtonM from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
-import PropTypes from "prop-types";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import { EuiButton } from '@elastic/eui';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // margin: theme.spacing(1 / 2),
-  },
-}));
 
-/**
- * @uxpinwrappers
- * SkipContainerWrapper
- */
 function Button(props) {
-  const classes = useStyles(props);
-  const { uxpinRef, ...other } = props;
-
   return (
-    <div >
-      <ButtonM
-        {...other}
-        ref={uxpinRef}
-        className={classes.root}
-        startIcon={props.startIcon && <Icon className='material-icons-outlined'>{props.startIcon}</Icon>}
-        endIcon={props.endIcon && <Icon className='material-icons-outlined'>{props.endIcon}</Icon>}
-      >
-        {props.children}
-      </ButtonM>
-    </div>
+    <EuiButton {...props}>{props.children}</EuiButton>
   );
 }
 
-// *********************
-// ** Designer specific parameters exposed in UXPin. See MUI component documentation for additional parameters
-// *********************
-
 Button.propTypes = {
-  /**
-   * The label of the button.
-   * @uxpinpropname  Label
-   * */
-  children: PropTypes.string,
+
+  children: PropTypes.node,
 
   /**
-   * The type of button.
-   */
-  variant: PropTypes.oneOf(["text", "outlined", "contained"]),
+     * Make button a solid color for prominence
+     */
+  fill: PropTypes.bool,
 
   /**
-   * The color of the button.
-   */
+     * Any of our named colors.
+     */
+  color: PropTypes.oneOf(["primary", "accent", "success", "warning", "danger", "ghost", "text"]),
 
-  color: PropTypes.oneOf(["primary", "secondary", "inherit"]),
-
-  /**
-   * The size of the button.
-   */
-  size: PropTypes.oneOf(["small", "medium", "large"]),
 
   /**
-   * If set, icon will display to the left.
-   * Use the name of the icon from https://material.io/tools/icons.
-   */
-  startIcon: PropTypes.string,
+     * Use size `s` in confined spaces
+     */
+  size: PropTypes.oneOf(["s", "m"]),
 
   /**
-   * If set, icon will display to the right.
-   * Use the name of the icon from https://material.io/tools/icons.
-   */
-  endIcon: PropTypes.string,
+     * `disabled` is also allowed
+     */
+  isDisabled: PropTypes.bool,
 
   /**
-   * If `true`, the button will take up the full width of its container.
-   */
+     * Extends the button to 100% width
+     */
   fullWidth: PropTypes.bool,
 
   /**
-   * If `true`, the button will have no elevation.
-   */
-
-  disableElevation: PropTypes.bool,
+     * Override the default minimum width
+     */
+  minWidth: PropTypes.number,
 
   /**
-   * If `true`, the button will be disabled.
-   */
+     * Force disables the button and changes the icon to a loading spinner
+     */
+  isLoading: PropTypes.bool,
 
-  disabled: PropTypes.bool,
   /**
-   * On click event to use with UXPin interactions.
-   */
+     * Any `type` accepted by EuiIcon
+     */
+  iconType: PropTypes.oneOf(["accessibility", "addDataApp", "advancedSettingsApp", "agentApp", "aggregate", "alert", "analyzeEvent", "annotation", "apmApp", "apmTrace", "appSearchApp", "apps", "arrowDown", "arrowLeft", "arrowRight", "arrowUp", "arrowStart", "arrowEnd", "asterisk", "auditbeatApp", "beaker", "bell", "bellSlash", "bolt", "boxesHorizontal", "boxesVertical", "branch", "branchUser", "broom", "brush", "bug", "bullseye", "calendar", "canvasApp", "casesApp", "check", "checkInCircleFilled", "cheer", "classificationJob", "clock", "cloudDrizzle", "cloudStormy", "cloudSunny", "codeApp", "color", "compute", "console", "consoleApp", "continuityAbove", "continuityAboveBelow", "continuityBelow", "continuityWithin", "controlsHorizontal", "controlsVertical", "copy", "copyClipboard", "createAdvancedJob", "createMultiMetricJob", "createPopulationJob", "createSingleMetricJob", "cross", "crossClusterReplicationApp", "crossInACircleFilled", "crosshairs", "currency", "cut", "dashboardApp", "dataVisualizer", "database", "desktop", "devToolsApp", "discoverApp", "document", "documentEdit", "documentation", "documents", "dot", "doubleArrowLeft", "doubleArrowRight", "download", "editorAlignCenter", "editorAlignLeft", "editorAlignRight", "editorBold", "editorChecklist", "editorCodeBlock", "editorComment", "editorDistributeHorizontal", "editorDistributeVertical", "editorHeading", "editorItalic", "editorItemAlignBottom", "editorItemAlignCenter", "editorItemAlignLeft", "editorItemAlignMiddle", "editorItemAlignRight", "editorItemAlignTop", "editorLink", "editorOrderedList", "editorPositionBottomLeft", "editorPositionBottomRight", "editorPositionTopLeft", "editorPositionTopRight", "editorRedo", "editorStrike", "editorTable", "editorUnderline", "editorUndo", "editorUnorderedList", "email", "empty", "emsApp", "eql", "eraser", "exit", "expand", "expandMini", "exportAction", "eye", "eyeClosed", "faceHappy", "faceNeutral", "faceSad", "filebeatApp", "filter", "flag", "fleetApp", "fold", "folderCheck", "folderClosed", "folderExclamation", "folderOpen", "frameNext", "framePrevious", "fullScreen", "fullScreenExit", "function", "gear", "gisApp", "glasses", "globe", "grab", "grabHorizontal", "graphApp", "grid", "grokApp", "heart", "heartbeatApp", "heatmap", "help", "home", "iInCircle", "image", "importAction", "indexClose", "indexEdit", "indexFlush", "indexManagementApp", "indexMapping", "indexOpen", "indexPatternApp", "indexRollupApp", "indexRuntime", "indexSettings", "inputOutput", "inspect", "invert", "ip", "keyboardShortcut", "kqlField", "kqlFunction", "kqlOperand", "kqlSelector", "kqlValue", "layers", "lensApp", "lettering", "lineDashed", "lineDotted", "lineSolid", "link", "list", "listAdd", "lock", "lockOpen", "logoAWS", "logoAWSMono", "logoAerospike", "logoApache", "logoAppSearch", "logoAzure", "logoAzureMono", "logoBeats", "logoBusinessAnalytics", "logoCeph", "logoCloud", "logoCloudEnterprise", "logoCode", "logoCodesandbox", "logoCouchbase", "logoDocker", "logoDropwizard", "logoElastic", "logoElasticStack", "logoElasticsearch", "logoEnterpriseSearch", "logoEtcd", "logoGCP", "logoGCPMono", "logoGithub", "logoGmail", "logoGolang", "logoGoogleG", "logoHAproxy", "logoIBM", "logoIBMMono", "logoKafka", "logoKibana", "logoKubernetes", "logoLogging", "logoLogstash", "logoMaps", "logoMemcached", "logoMetrics", "logoMongodb", "logoMySQL", "logoNginx", "logoObservability", "logoOsquery", "logoPhp", "logoPostgres", "logoPrometheus", "logoRabbitmq", "logoRedis", "logoSecurity", "logoSiteSearch", "logoSketch", "logoSlack", "logoUptime", "logoWebhook", "logoWindows", "logoWorkplaceSearch", "logsApp", "logstashFilter", "logstashIf", "logstashInput", "logstashOutput", "logstashQueue", "machineLearningApp", "magnet", "magnifyWithExclamation", "magnifyWithMinus", "magnifyWithPlus", "managementApp", "mapMarker", "memory", "menu", "menuDown", "menuLeft", "menuRight", "menuUp", "merge", "metricbeatApp", "metricsApp", "minimize", "minus", "minusInCircle", "minusInCircleFilled", "mobile", "monitoringApp", "moon", "nested", "node", "notebookApp", "number", "offline", "online", "outlierDetectionJob", "package", "packetbeatApp", "pageSelect", "pagesSelect", "paperClip", "partial", "pause", "payment", "pencil", "percent", "pin", "pinFilled", "pipelineApp", "play", "playFilled", "plus", "plusInCircle", "plusInCircleFilled", "popout", "push", "questionInCircle", "quote", "recentlyViewedApp", "refresh", "regressionJob", "reporter", "reportingApp", "returnKey", "save", "savedObjectsApp", "scale", "search", "searchProfilerApp", "securityAnalyticsApp", "securityApp", "securitySignal", "securitySignalDetected", "securitySignalResolved", "sessionViewer", "shard", "share", "snowflake", "sortDown", "sortLeft", "sortRight", "sortUp", "sortable", "spacesApp", "sqlApp", "starEmpty", "starEmptySpace", "starFilled", "starFilledSpace", "starMinusEmpty", "starMinusFilled", "starPlusEmpty", "starPlusFilled", "stats", "stop", "stopFilled", "stopSlash", "storage", "string", "submodule", "sun", "swatchInput", "symlink", "tableDensityCompact", "tableDensityExpanded", "tableDensityNormal", "tableOfContents", "tag", "tear", "temperature", "timeline", "timelionApp", "timeRefresh", "timeslider", "training", "trash", "unfold", "unlink", "upgradeAssistantApp", "uptimeApp", "user", "users", "usersRolesApp", "vector", "videoPlayer", "visArea", "visAreaStacked", "visBarHorizontal", "visBarHorizontalStacked", "visBarVertical", "visBarVerticalStacked", "visGauge", "visGoal", "visLine", "visMapCoordinate", "visMapRegion", "visMetric", "visPie", "visTable", "visTagCloud", "visText", "visTimelion", "visVega", "visVisualBuilder", "visualizeApp", "watchesApp", "wordWrap", "wordWrapDisabled", "workplaceSearchApp", "wrench", "tokenClass", "tokenProperty", "tokenEnum", "tokenVariable", "tokenMethod", "tokenAnnotation", "tokenException", "tokenInterface", "tokenParameter", "tokenField", "tokenElement", "tokenFunction", "tokenBoolean", "tokenString", "tokenArray", "tokenNumber", "tokenConstant", "tokenObject", "tokenEvent", "tokenKey", "tokenNull", "tokenStruct", "tokenPackage", "tokenOperator", "tokenEnumMember", "tokenRepo", "tokenSymbol", "tokenFile", "tokenModule", "tokenNamespace", "tokenDate", "tokenIP", "tokenNested", "tokenAlias", "tokenShape", "tokenGeo", "tokenRange", "tokenBinary", "tokenJoin", "tokenPercolator", "tokenFlattened", "tokenRankFeature", "tokenRankFeatures", "tokenKeyword", "tokenTag", "tokenCompletionSuggester", "tokenDenseVector", "tokenText", "tokenTokenCount", "tokenSearchType", "tokenHistogram"]),
+
+  /**
+     * Can only be one side `left` or `right`
+     */
+  iconSide: PropTypes.oneOf(["left", "right"]),
+
+  iconSize: PropTypes.oneOf(["s", "m"]),
+
+  href: PropTypes.string,
+
   onClick: PropTypes.func,
 
-  /**
-   * Aria-label text for accessibility.
-   */
-  "aria-label": PropTypes.string,
 };
+
+
 
 export default Button;

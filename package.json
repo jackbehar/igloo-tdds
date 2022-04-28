@@ -15,27 +15,20 @@
     "@babel/preset-react": "^7.0.0",
     "@uxpin/merge-cli": "^2.7.8",
     "babel-loader": "^8.0.4",
-    "docz-theme-default": "1.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "source-map-loader": "^0.2.4",
     "svg-react-loader": "^0.4.6",
-    "webpack": "^4.22.0"
+    "webpack": "^5.72.0"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.3",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/styles": "^4.9.14",
-    "classnames": "^2.2.6",
-    "convert-css-length": "^2.0.1",
+    "@elastic/datemath": "^5.0.3",
+    "@elastic/eui": "^55.1.0",
+    "@emotion/react": "^11.9.0",
     "css-loader": "^3.2.0",
     "depcheck": "^1.4.2",
-    "jss-rtl": "^0.3.0",
-    "lodash": "^4.17.15",
-    "react-frame-component": "^4.1.1",
-    "react-html-parser": "^2.0.2",
-    "recharts": "^2.0.0-beta.1",
+    "moment": "^2.29.3",
     "style-loader": "^1.0.0"
   }
 }
